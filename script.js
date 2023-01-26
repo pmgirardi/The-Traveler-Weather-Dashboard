@@ -53,9 +53,9 @@ var displayWeather = function(weather, searchCity){
    weatherColumn.textContent= "";  
    citySearchInput.textContent=searchCity;
 
-// Display Current Day 
-   var currentDay = document.createElement("span")
-   currentDay.textContent=" (" + moment(weather.dt.value).format("MMM D, YYYY") + ") ";
+// Display Current Day using dayjs
+    var currentDay = document.createElement("span")
+   currentDay.textContent=" (" + dayjs(weather.dt.value).format('dddd, MMMM D') + ") ";
    citySearchInput.appendChild(currentDay);
 
 //    Weather icon 
@@ -124,3 +124,52 @@ var get5day = function(city){
     });
 };
 
+// Display weather for 5 day forecast 
+
+var display5Day = function(weather){
+    forecastColumn.textContent = ""
+    forecastId.textContent = "5-Day Forecast:";
+
+    var forecast = weather.list;
+        for(var i=5; i < forecast.length; i=i+8){
+       var dailyForecast = forecast[i];
+        
+       
+       var forecastEl=document.createElement("div");
+       forecastEl.classList = "card bg-primary text-light m-2";
+
+
+       var forecastDate = document.createElement("h5")
+       forecastDate.textContent= dayjs.unix(dailyForecast.dt).format('dddd, MMMM D');
+       forecastDate.classList = "card-header text-center"
+       forecastEl.appendChild(forecastDate);
+
+       
+    // Image element 
+       var weatherIcon = document.createElement("img")
+       weatherIcon.classList = "card-body text-center";
+       weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);  
+
+    // Append to card 
+       forecastEl.appendChild(weatherIcon);
+       
+//   Temperature span 
+       var forecastTempEl=document.createElement("span");
+       forecastTempEl.classList = "card-body text-center";
+       forecastTempEl.textContent = dailyForecast.main.temp + " °F";
+
+// Appened to the forecast card 
+        forecastEl.appendChild(forecastTempEl);
+
+       var forecastHumEl=document.createElement("span");
+       forecastHumEl.classList = "card-body text-center";
+       forecastHumEl.textContent = dailyForecast.main.humidity + "  %";
+
+       forecastEl.appendChild(forecastHumEl);
+
+        // console.log(forecastEl);
+       //append to five day container
+        forecastColumn.appendChild(forecastEl);
+    }
+
+}
