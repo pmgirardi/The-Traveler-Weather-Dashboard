@@ -12,7 +12,7 @@ A weather forecast application that allows a user to find the current and 5 day 
 
 ### Screenshot
 
-![Deployed Website](/assets/images/Work%20Day%20Scheduler.gif)
+![Deployed Website](images/The Weather Dashboard.gif)
 
 ### Link to deployed website
 
