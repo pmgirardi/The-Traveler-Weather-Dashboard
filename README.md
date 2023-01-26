@@ -11,4 +11,4 @@ A weather forecast application that allows a user to find the current and 5 day 
 
 ### Link to deployed website
 
-https://pmgirardi.github.io/Time-Block-Schedule/
+https://pmgirardi.github.io/The-Traveler-Weather-Dashboard/
