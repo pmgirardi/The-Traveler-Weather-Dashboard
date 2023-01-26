@@ -109,3 +109,18 @@ var previousSearchHandler = function(event){
 
 searchCity.addEventListener("submit", submitHandler);
 searchHistoryBtn.addEventListener("click", previousSearchHandler);
+
+// Retrieve data for 5 day forecast 
+
+var get5day = function(city){
+    var APIkey = "844421298d794574c100e3409cee0499"
+    var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${APIkey}`
+
+    fetch(queryURL)
+    .then(function(response){
+        response.json().then(function(data){
+           display5Day(data);
+        });
+    });
+};
+
